@@ -1,0 +1,472 @@
+{
+    "processed data": [
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:54:03",
+            "temperature high": 35.21,
+            "temperature low": 32.53,
+            "temperature average": 34.014444444444436,
+            "error count": 7,
+            "alarm_count": 10
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:54:03",
+            "temperature high": 36,
+            "temperature low": 29,
+            "temperature average": 34.443999999999996,
+            "error count": 5,
+            "alarm_count": 11
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:54:03",
+            "temperature high": 6.62,
+            "temperature low": -3,
+            "temperature average": 3.7700000000000005,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:54:33",
+            "temperature high": 35.21,
+            "temperature low": 30,
+            "temperature average": 33.68,
+            "error count": 7,
+            "alarm_count": 10
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:54:33",
+            "temperature high": 35.91,
+            "temperature low": 29,
+            "temperature average": 33.955,
+            "error count": 5,
+            "alarm_count": 11
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:54:33",
+            "temperature high": 6.62,
+            "temperature low": 1,
+            "temperature average": 3.965,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:55:03",
+            "temperature high": 35.21,
+            "temperature low": 30,
+            "temperature average": 33.580000000000005,
+            "error count": 7,
+            "alarm_count": 10
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:55:03",
+            "temperature high": 35.83,
+            "temperature low": 29,
+            "temperature average": 33.68300000000001,
+            "error count": 5,
+            "alarm_count": 11
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:55:03",
+            "temperature high": 6.06,
+            "temperature low": 1,
+            "temperature average": 3.9480000000000004,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:55:33",
+            "temperature high": 35.71,
+            "temperature low": 30,
+            "temperature average": 33.858999999999995,
+            "error count": 7,
+            "alarm_count": 10
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:55:33",
+            "temperature high": 35.34,
+            "temperature low": 29,
+            "temperature average": 33.032,
+            "error count": 5,
+            "alarm_count": 11
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:55:33",
+            "temperature high": 6.08,
+            "temperature low": 3.01,
+            "temperature average": 4.726,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:56:03",
+            "temperature high": 35.71,
+            "temperature low": 30,
+            "temperature average": 33.11,
+            "error count": 7,
+            "alarm_count": 10
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:56:03",
+            "temperature high": 42,
+            "temperature low": 30,
+            "temperature average": 34.306999999999995,
+            "error count": 5,
+            "alarm_count": 12
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:56:03",
+            "temperature high": 6.55,
+            "temperature low": 3.95,
+            "temperature average": 5.04,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:56:33",
+            "temperature high": 35.85,
+            "temperature low": 32.25,
+            "temperature average": 33.683,
+            "error count": 7,
+            "alarm_count": 10
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:56:33",
+            "temperature high": 42,
+            "temperature low": 32.52,
+            "temperature average": 34.47099999999999,
+            "error count": 5,
+            "alarm_count": 12
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:56:33",
+            "temperature high": 6.55,
+            "temperature low": 3.95,
+            "temperature average": 5.107,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:57:03",
+            "temperature high": 35.85,
+            "temperature low": 26,
+            "temperature average": 32.79299999999999,
+            "error count": 7,
+            "alarm_count": 11
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:57:03",
+            "temperature high": 42,
+            "temperature low": 32.52,
+            "temperature average": 34.967000000000006,
+            "error count": 5,
+            "alarm_count": 12
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:57:03",
+            "temperature high": 6.55,
+            "temperature low": 3.44,
+            "temperature average": 5.135,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:57:34",
+            "temperature high": 41,
+            "temperature low": 26,
+            "temperature average": 33.799,
+            "error count": 7,
+            "alarm_count": 12
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:57:34",
+            "temperature high": 35.86,
+            "temperature low": 32.52,
+            "temperature average": 34.61000000000001,
+            "error count": 5,
+            "alarm_count": 12
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:57:34",
+            "temperature high": 6.89,
+            "temperature low": 3.44,
+            "temperature average": 5.729000000000001,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 14:57:34",
+            "temperature high": 100.34,
+            "temperature low": 100.34,
+            "temperature average": 100.34,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:58:04",
+            "temperature high": 41,
+            "temperature low": 26,
+            "temperature average": 33.912000000000006,
+            "error count": 7,
+            "alarm_count": 12
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:58:04",
+            "temperature high": 35.86,
+            "temperature low": 33.03,
+            "temperature average": 34.751999999999995,
+            "error count": 5,
+            "alarm_count": 12
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:58:04",
+            "temperature high": 7.0,
+            "temperature low": 3.44,
+            "temperature average": 5.906000000000001,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 14:58:04",
+            "temperature high": 100.34,
+            "temperature low": 98.09,
+            "temperature average": 99.21000000000001,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:58:34",
+            "temperature high": 42,
+            "temperature low": 33.46,
+            "temperature average": 35.989999999999995,
+            "error count": 7,
+            "alarm_count": 13
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:58:34",
+            "temperature high": 35.86,
+            "temperature low": 32.05,
+            "temperature average": 34.163,
+            "error count": 5,
+            "alarm_count": 12
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:58:34",
+            "temperature high": 7,
+            "temperature low": 3.49,
+            "temperature average": 6.194999999999999,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 14:58:34",
+            "temperature high": 101.51,
+            "temperature low": 98.09,
+            "temperature average": 99.66857142857144,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:59:04",
+            "temperature high": 42,
+            "temperature low": 31,
+            "temperature average": 35.52499999999999,
+            "error count": 7,
+            "alarm_count": 13
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:59:04",
+            "temperature high": 42,
+            "temperature low": 32.05,
+            "temperature average": 35.245,
+            "error count": 5,
+            "alarm_count": 14
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:59:04",
+            "temperature high": 7.0,
+            "temperature low": 3.29,
+            "temperature average": 5.345,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 14:59:04",
+            "temperature high": 101.67,
+            "temperature low": 98.09,
+            "temperature average": 100.24600000000001,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 14:59:35",
+            "temperature high": 42,
+            "temperature low": 31,
+            "temperature average": 35.044000000000004,
+            "error count": 7,
+            "alarm_count": 13
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 14:59:35",
+            "temperature high": 42,
+            "temperature low": 32.05,
+            "temperature average": 35.193,
+            "error count": 5,
+            "alarm_count": 14
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 14:59:35",
+            "temperature high": 7.0,
+            "temperature low": 3.05,
+            "temperature average": 5.293,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 14:59:35",
+            "temperature high": 101.67,
+            "temperature low": 98.89,
+            "temperature average": 100.528,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 15:00:05",
+            "temperature high": 42,
+            "temperature low": 31,
+            "temperature average": 35.581,
+            "error count": 7,
+            "alarm_count": 13
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 15:00:05",
+            "temperature high": 42,
+            "temperature low": 32.59,
+            "temperature average": 35.98800000000001,
+            "error count": 5,
+            "alarm_count": 14
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 15:00:05",
+            "temperature high": 7,
+            "temperature low": 3.05,
+            "temperature average": 4.711,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 15:00:05",
+            "temperature high": 101.67,
+            "temperature low": 99.45,
+            "temperature average": 101.00199999999998,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 15:00:35",
+            "temperature high": 39,
+            "temperature low": 32.03,
+            "temperature average": 35.062,
+            "error count": 7,
+            "alarm_count": 13
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 15:00:35",
+            "temperature high": 41,
+            "temperature low": 32.99,
+            "temperature average": 35.51222222222222,
+            "error count": 6,
+            "alarm_count": 14
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 15:00:35",
+            "temperature high": 6.65,
+            "temperature low": 3.05,
+            "temperature average": 4.833,
+            "error count": 5,
+            "alarm_count": 7
+        },
+        {
+            "id": 15,
+            "timestamp": "26/01/2021 15:00:35",
+            "temperature high": 101.83,
+            "temperature low": 99.45,
+            "temperature average": 100.96099999999998,
+            "error count": 0,
+            "alarm_count": 0
+        },
+        {
+            "id": 12,
+            "timestamp": "26/01/2021 15:01:05",
+            "temperature high": 39,
+            "temperature low": 27,
+            "temperature average": 34.149,
+            "error count": 7,
+            "alarm_count": 14
+        },
+        {
+            "id": 13,
+            "timestamp": "26/01/2021 15:01:05",
+            "temperature high": 35.98,
+            "temperature low": 32.18,
+            "temperature average": 34.292222222222215,
+            "error count": 6,
+            "alarm_count": 14
+        },
+        {
+            "id": 14,
+            "timestamp": "26/01/2021 15:01:05",
+            "temperature high": 6.71,
+            "temperature low": 3.24,
+            "temperature average": 4.828,
+            "error count": 5,
+            "alarm_count": 7
+        }
+    ]
+}

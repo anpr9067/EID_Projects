@@ -249,10 +249,10 @@
                 <div class="card-body">
                   <p class="card-title text-md-center text-xl-left">Temperature</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="Temp"></h3>
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="Temp">0</h3>
                     <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                   </div>  
-                  <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  <p class="mb-0 mt-2 text-success" id="Timestampid">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
                 </div>
               </div>
             </div>
@@ -261,10 +261,10 @@
                 <div class="card-body">
                   <p class="card-title text-md-center text-xl-left">Average Temperature</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id="AvgTemp">47033</h3>
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id="AvgTemp">0</h3>
                     <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                   </div>  
-                  <p class="mb-0 mt-2 text-danger">0.47% <span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  <p class="mb-0 mt-2 text-success" id="Timestampid1">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
                 </div>
               </div>
             </div>
@@ -273,10 +273,10 @@
                 <div class="card-body">
                   <p class="card-title text-md-center text-xl-left">Humidity</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="Hum">40016</h3>
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="Hum">0</h3>
                     <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                   </div>  
-                  <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  <p class="mb-0 mt-2 text-success" id="Timestampid2">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
                 </div>
               </div>
             </div>
@@ -285,10 +285,10 @@
                 <div class="card-body">
                   <p class="card-title text-md-center text-xl-left">Average Humidity</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="AvgHum">61344</h3>
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="AvgHum">0</h3>
                     <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                   </div>  
-                  <p class="mb-0 mt-2 text-success">23.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  <p class="mb-0 mt-2 text-success" id="Timestampid3">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
                 </div>
               </div>
             </div>
@@ -374,7 +374,7 @@
                           <th>Sensor Id</th>
                           <th>Timestamp</th>
                           <th>Humidity</th>
-                          <th>Temperature</th>
+                          <th id="ChangeTemp">Temperature</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -562,18 +562,10 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
-  <script type="js/websocket.js"></script>
+  <!-- <script type="js/websocket.js"></script> -->
   <!-- End custom js for this page-->
 </body>
 <script>
-  /*$("#submit").click(function () { 
-            var name = $("#name").val(); 
-            var marks = $("#marks").val(); 
-            var str = "You Have Entered "  
-                + "Name: " + name  
-                + " and Marks: " + marks; 
-            $("#modal_body").html(str); 
-        }); */
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -595,6 +587,18 @@
     const AvgTemp = document.querySelector('#AvgTemp');
     const Hum = document.querySelector('#Hum');
     const AvgHum = document.querySelector('#AvgHum');
+    const changetemp = document.querySelector('#ChangeTemp');
+    const Timestampid = document.querySelector('#Timestampid');
+    const Timestampid1 = document.querySelector('#Timestampid1');
+    const Timestampid2 = document.querySelector('#Timestampid2');
+    const Timestampid3 = document.querySelector('#Timestampid3');
+    var tempchange = "F";
+    //var tempc;// = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+    //var tempf;// = msg[ij].Tempreture + "°F";
+    var printtemp = [];
+    var printhum = [];
+    var printavgtemp, printavghum;
+
     const ws = new WebSocket('ws://localhost:9898/');
     sensorBtn0.onclick = function() {
       if (!ws) {
@@ -649,7 +653,14 @@
           sensorid = 5;
         }
       }
-      
+      changetemp.onclick = function() {
+        if(tempchange == "F"){
+          tempchange = "C";
+        }else{
+          tempchange = "F";
+        }
+        console.log(tempchange);
+      }
     ws.onopen = function() {
         console.log('WebSocket Client Connected');
         ws.send(0);
@@ -664,7 +675,7 @@
       }
       ws.send(sensorid);
       var msg = JSON.parse(e.data);
-      msg.Tempreture
+      //msg.Tempreture
       while(i<10000000){
         if(i==0){
           var j = 0;
@@ -672,8 +683,17 @@
           avghum = 0;
           avgtempcount = 0;
           avghumcount = 0;
+
           for(j=0; j<9; j++){
               celsius[j] = (msg[j].Tempreture -32)*(5/9);
+              //tempc[j] = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+              //tempf[j] = msg[j].Tempreture + "°F";
+              if(tempchange == "C"){
+                printtemp[j] = (Math.round(celsius[j] * 100) / 100).toFixed(2) + " °C";
+              }else{
+                printtemp[j] = msg[j].Tempreture + " °F";
+              }
+              printhum[j] = msg[j].Humidity + " %";
               if(msg[j].Tempreture != 999){
                 avgtemp += msg[j].Tempreture;
                 avgtempcount++;
@@ -687,15 +707,23 @@
         
         i++;
       }
-      console.log(avgtemp);
-      console.log(avghum);
+      //console.log(avgtemp);
+      //console.log(avghum);
       avgtemp = avgtemp/avgtempcount;
       avghum = avghum/avghumcount;
-      console.log(avgtemp);
-      console.log(avghum);
+      if(tempchange == "C"){
+        avgtemp = (avgtemp - 32)*(5/9);
+        printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °C";
+        printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
+      }else{
+        printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °F";
+        printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
+      }
+      //console.log(avgtemp);
+      //console.log(avghum);
       i=0;
-      showMessage(messages,msg[0].Tempreture);
-      console.log(msg);
+      showMessage(messages,msg[0].id);
+      //console.log(msg);
       function TableEntry() {
         var ij = 0, k=0;
         var table = document.getElementById("insert-into-table");
@@ -714,17 +742,25 @@
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
           var cell4 = row.insertCell(3);
+          var tempc = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+          var tempf = msg[ij].Tempreture + "°F";
+          //console.log(tempf);
+          //console.log(tempc);
           cell1.innerHTML = msg[ij].sensornumber;
           cell2.innerHTML = msg[ij].TimeStamp;
-          cell3.innerHTML = msg[ij].Humidity;
-          cell4.innerHTML = msg[ij].Tempreture;
+          cell3.innerHTML = printhum[ij];
+          cell4.innerHTML = printtemp[ij]; 
         }
         ij = 0;  
       }
-      showMessage(Temp,msg[0].Tempreture);
-      showMessage(AvgTemp,(Math.round(avgtemp * 100) / 100).toFixed(2));
-      showMessage(Hum,msg[0].Humidity);
-      showMessage(AvgHum, (Math.round(avghum * 100) / 100).toFixed(2))
+      showMessage(Temp,printtemp[0]);
+      showMessage(AvgTemp,printavgtemp);
+      showMessage(Hum,printhum[0]);
+      showMessage(AvgHum, printavghum);
+      showMessage(Timestampid, msg[0].TimeStamp);
+      showMessage(Timestampid1, msg[0].TimeStamp);
+      showMessage(Timestampid2, msg[0].TimeStamp);
+      showMessage(Timestampid3, msg[0].TimeStamp);
       TableEntry();
     };
 </script>

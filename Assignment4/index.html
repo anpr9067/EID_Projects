@@ -302,9 +302,28 @@
                   <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
                   <canvas id="sales-chart"></canvas>
                 </div>
-                <!-- <div class="card border-right-0 border-left-0 border-bottom-0">
-                  <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block">Refresh</button>
-                  <div class="d-flex justify-content-center justify-content-md-end btn-group" id="buttonid">
+                <div class="card border-right-0 border-left-0 border-bottom-0">
+                  <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" onClick="window.location.reload();">Refresh</button>
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio0" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="sensorbtnradio0">Sensor 0</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio1">Sensor 1</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio2">Sensor 2</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio3">Sensor 3</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio4">Sensor 4</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio5">Sensor 5</label>
+                  </div>
+                  <!-- <div class="d-flex justify-content-center justify-content-md-end btn-group" id="buttonid">
                     <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" type="button" data-toggle="button" id="#sensor0" value="0" onclick="Sensor0()">Sensor 0</button>
                     <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" type="button" data-toggle="button" id="#sensor1" value="1" onclick="Sensor1()">Sensor 1</button>
                     <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" type="button" data-toggle="button" id="#sensor2" value="2" onclick="Sensor2()">Sensor 2</button>
@@ -312,25 +331,6 @@
                     <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" type="button" data-toggle="button" id="#sensor4" value="4" onclick="Sensor4()">Sensor 4</button>
                     <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" type="button" data-toggle="button" id="#sensor5" value="5" onclick="Sensor5()">Sensor 5</button>
                   </div> -->
-                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="sensorbtnradio0" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="sensorbtnradio0">Sensor 0</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="sensorbtnradio1" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio1">Sensor 1</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="sensorbtnradio2" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio2">Sensor 2</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="sensorbtnradio3" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio3">Sensor 3</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="sensorbtnradio4" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio4">Sensor 4</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="sensorbtnradio5" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio5">Sensor 5</label>
-                  </div>
                 </div>
               </div>
             </div>
@@ -378,42 +378,6 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <!-- <tr>
-                          <td id=""></td>
-                          <td id="">Photoshop</td>
-                          <td id="">28.76%</td>
-                          <td id=""></td>
-                        </tr>
-                        <tr>
-                          <td id=""></td>
-                          <td id="">Photoshop</td>
-                          <td id="">28.76%</td>
-                          <td id=""></td>
-                        </tr>
-                        <tr>
-                          <td id=""></td>
-                          <td id="">Photoshop</td>
-                          <td id="">28.76%</td>
-                          <td id=""></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                          <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr> -->
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-info">Fixed</label></td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -634,7 +598,7 @@
     const ws = new WebSocket('ws://localhost:9898/');
     sensorBtn0.onclick = function() {
       if (!ws) {
-        showMessage("No WebSocket connection :(");//put error message
+        console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
           sensorid = 0;
@@ -643,7 +607,7 @@
       }
       sensorBtn1.onclick = function() {
       if (!ws) {
-        showMessage("No WebSocket connection :(");//put error message
+        console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
           sensorid = 1;
@@ -652,7 +616,7 @@
       }
       sensorBtn2.onclick = function() {
       if (!ws) {
-        showMessage("No WebSocket connection :(");//put error message
+        console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
           sensorid = 2;
@@ -661,7 +625,7 @@
       }
       sensorBtn3.onclick = function() {
       if (!ws) {
-        showMessage("No WebSocket connection :(");//put error message
+        console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
           sensorid = 3;
@@ -670,7 +634,7 @@
       }
       sensorBtn4.onclick = function() {
       if (!ws) {
-        showMessage("No WebSocket connection :(");//put error message
+        console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
           sensorid = 4;
@@ -679,7 +643,7 @@
       }
       sensorBtn5.onclick = function() {
       if (!ws) {
-        showMessage("No WebSocket connection :(");//put error message
+        console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
           sensorid = 5;
@@ -695,7 +659,9 @@
           //messages.scrollTop = messages.scrollHeight;
     }
     ws.onmessage = function(e) {
-        
+      if(!ws){
+
+      }
       ws.send(sensorid);
       var msg = JSON.parse(e.data);
       msg.Tempreture

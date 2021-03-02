@@ -5,14 +5,14 @@
     const server = http.createServer();
     var finalresult1;
     var finalresult2;
+    var sensorid = 0;
     server.listen(9898);
     const wsServer = new WebSocketServer({
         httpServer: server
     });
     wsServer.on('request', function(request) {
-        const sensordata0 = "SELECT * FROM eid.sensor where sensornumber = 0 ORDER BY id DESC LIMIT 10;";
-        const sensordata1 = "SELECT * FROM eid.sensor where sensornumber = 1 ORDER BY id DESC LIMIT 10;";
-        
+        var sensordata0 = "SELECT * FROM eid.sensor where sensornumber = "+sensorid+" ORDER BY id DESC LIMIT 10;";
+        console.log(sensordata0);
         con.query(sensordata0, function(err, result, fields){
             if (err) throw err;
             console.log("query success");
@@ -20,20 +20,26 @@
             finalresult1 = result;
             
         });
-        con.query(sensordata1, function(err, result, fields){
+
+        const connection = request.accept(null, request.origin);
+        
+        connection.on('message', function(message) {
+
+          console.log('Received Message:', message.utf8Data);
+          sensorid = message.utf8Data;
+          console.log(sensorid);
+          sensordata0 = "SELECT * FROM eid.sensor where sensornumber = "+sensorid+" ORDER BY id DESC LIMIT 10;";
+          con.query(sensordata0, function(err, result, fields){
             if (err) throw err;
             console.log("query success");
             //console.log(result);
-            finalresult2 = result;
+            finalresult1 = result;
             
-        });
-
-        const connection = request.accept(null, request.origin);
-        connection.on('message', function(message) {
-          console.log(finalresult1);
-          console.log('Received Message:', message);;
+            });
+          console.log(sensordata0);
           connection.send(JSON.stringify(finalresult1));
-          connection.send(JSON.stringify(finalresult2));
+          /*connection.send(JSON.stringify(finalresult1));
+          connection.send(JSON.stringify(finalresult2));*/
         });
         connection.on('close', function(reasonCode, description) {
             console.log('Client has disconnected.');

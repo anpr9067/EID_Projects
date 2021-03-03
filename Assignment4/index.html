@@ -607,6 +607,7 @@
       }else{
           sensorid = 0;
           console.log(sensorid);
+         // ws.send(sensorid);
         }
       }
       sensorBtn1.onclick = function() {
@@ -616,6 +617,7 @@
       }else{
           sensorid = 1;
           console.log(sensorid);
+          //ws.send(sensorid);
         }
       }
       sensorBtn2.onclick = function() {
@@ -625,6 +627,7 @@
       }else{
           sensorid = 2;
           console.log(sensorid);
+          //ws.send(sensorid);
         }
       }
       sensorBtn3.onclick = function() {
@@ -634,6 +637,7 @@
       }else{
           sensorid = 3;
           console.log(sensorid);
+          //ws.send(sensorid);
         }
       }
       sensorBtn4.onclick = function() {
@@ -643,6 +647,7 @@
       }else{
           sensorid = 4;
           console.log(sensorid);
+          //ws.send(sensorid);
         }
       }
       sensorBtn5.onclick = function() {
@@ -651,6 +656,8 @@
         return ;
       }else{
           sensorid = 5;
+          console.log(sensorid);
+          //ws.send(sensorid);
         }
       }
       changetemp.onclick = function() {
@@ -670,12 +677,10 @@
           //messages.scrollTop = messages.scrollHeight;
     }
     ws.onmessage = function(e) {
-      if(!ws){
-
-      }
+      
       ws.send(sensorid);
       var msg = JSON.parse(e.data);
-      //msg.Tempreture
+      //console.log(e.data);
       while(i<10000000){
         if(i==0){
           var j = 0;

@@ -1,5 +1,4 @@
-    // Node.js WebSocket server script
-    const con = require('./db.js');
+const con = require('./db.js');
     const http = require('http');
     const WebSocketServer = require('websocket').server;
     const server = http.createServer();

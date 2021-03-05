@@ -13,6 +13,8 @@
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
+<!--   <script type="text/javascript" src="Chart.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
@@ -104,10 +106,9 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <img src="Plot.png">
-              
+            <div>
+              <div>
+                <canvas id="myChart" width="400" height="400"></canvas>
                 <div class="card border-right-0 border-left-0 border-bottom-0">
                   <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" onClick="window.location.reload();">Refresh</button>
                   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -189,13 +190,16 @@
   <!-- <script type="js/websocket.js"></script> -->
   <!-- End custom js for this page-->
 </body>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script type="text/javascript">
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
     var i=0, j=0;
     var sensorid = 0;
     var celsius = [];
+    var temp_array = [0];
+    var x_axis = [0];
     var avgtemp = 0;
     var avghum = 0;
     var avgtempcount = 0;
@@ -241,7 +245,7 @@
         return ;
       }else{
           sensorid = 1;
-          console.log(sensorid);
+          // console.log(sensorid);
           //ws.send(sensorid);
         }
       }
@@ -251,7 +255,7 @@
         return ;
       }else{
           sensorid = 2;
-          console.log(sensorid);
+          // console.log(sensorid);
           //ws.send(sensorid);
         }
       }
@@ -261,7 +265,7 @@
         return ;
       }else{
           sensorid = 3;
-          console.log(sensorid);
+          // console.log(sensorid);
           //ws.send(sensorid);
         }
       }
@@ -271,7 +275,7 @@
         return ;
       }else{
           sensorid = 4;
-          console.log(sensorid);
+          // console.log(sensorid);
           //ws.send(sensorid);
         }
       }
@@ -281,7 +285,7 @@
         return ;
       }else{
           sensorid = 5;
-          console.log(sensorid);
+          // console.log(sensorid);
           //ws.send(sensorid);
         }
       }
@@ -291,7 +295,7 @@
         }else{
           tempchange = "F";
         }
-        console.log(tempchange);
+        // console.log(tempchange);
       }
     ws.onopen = function() {
         console.log('WebSocket Client Connected');
@@ -306,15 +310,15 @@
       ws.send(sensorid);
       var msg = JSON.parse(e.data);
       //console.log(e.data);
-      while(i<10000000){
+      while(i<1000000000){
         if(i==0){
           var j = 0;
           avgtemp = 0;
           avghum = 0;
           avgtempcount = 0;
           avghumcount = 0;
-
           for(j=0; j<9; j++){
+              // temp_array.push(msg.Tempreture);
               celsius[j] = (msg[j].Tempreture -32)*(5/9);
               //tempc[j] = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
               //tempf[j] = msg[j].Tempreture + "°F";
@@ -327,6 +331,8 @@
               if(msg[j].Tempreture != 999){
                 avgtemp += msg[j].Tempreture;
                 avgtempcount++;
+                temp_array[j] = msg[j].Tempreture;
+                x_axis[j] = msg[j].TimeStamp;
               }
               if(msg[j].Humidity != 999){
                 avghum += msg[j].Humidity;
@@ -334,7 +340,6 @@
               }
           }
         }
-        
         i++;
       }
       //console.log(avgtemp);
@@ -353,6 +358,28 @@
       //console.log(avghum);
       i=0;
       showMessage(messages,msg[0].id);
+      function ShowGraph()
+      {
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: 'line',
+
+              // The data for our dataset
+              data: {
+                  labels: x_axis,
+                  datasets: [{
+                      label: 'My First dataset',
+                      backgroundColor: 'rgb(255, 99, 132)',
+                      borderColor: 'rgb(255, 99, 132)',
+                      data: temp_array
+                  }]
+              },
+
+              // Configuration options go here
+              options: {}
+          });
+      }
       //console.log(msg);
       function TableEntry() {
         var ij = 0, k=0;
@@ -392,6 +419,7 @@
       showMessage(Timestampid2, msg[0].TimeStamp);
       showMessage(Timestampid3, msg[0].TimeStamp);
       TableEntry();
+      ShowGraph();
     };
     ws.onclose = function(){
       console.log("Connection Closed");

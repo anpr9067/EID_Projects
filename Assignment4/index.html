@@ -235,8 +235,8 @@
         return ;
       }else{
           sensorid = 0;
-          console.log(sensorid);
-         // ws.send(sensorid);
+          // console.log(sensorid);
+          ws.send(sensorid);
         }
       }
       sensorBtn1.onclick = function() {
@@ -246,7 +246,7 @@
       }else{
           sensorid = 1;
           // console.log(sensorid);
-          //ws.send(sensorid);
+          ws.send(sensorid);
         }
       }
       sensorBtn2.onclick = function() {
@@ -256,7 +256,7 @@
       }else{
           sensorid = 2;
           // console.log(sensorid);
-          //ws.send(sensorid);
+          ws.send(sensorid);
         }
       }
       sensorBtn3.onclick = function() {
@@ -266,7 +266,7 @@
       }else{
           sensorid = 3;
           // console.log(sensorid);
-          //ws.send(sensorid);
+          ws.send(sensorid);
         }
       }
       sensorBtn4.onclick = function() {
@@ -276,7 +276,7 @@
       }else{
           sensorid = 4;
           // console.log(sensorid);
-          //ws.send(sensorid);
+          ws.send(sensorid);
         }
       }
       sensorBtn5.onclick = function() {
@@ -286,7 +286,7 @@
       }else{
           sensorid = 5;
           // console.log(sensorid);
-          //ws.send(sensorid);
+          ws.send(sensorid);
         }
       }
       changetemp.onclick = function() {
@@ -307,11 +307,12 @@
     }
     ws.onmessage = function(e) {
       
-      ws.send(sensorid);
+      //ws.send(sensorid);
       var msg = JSON.parse(e.data);
+      console.log(msg[0].sensornumber);
       //console.log(e.data);
-      while(i<1000000000){
-        if(i==0){
+      // while(i<10000000){
+      //   if(i==0){
           var j = 0;
           avgtemp = 0;
           avghum = 0;
@@ -339,9 +340,9 @@
                 avghumcount++;
               }
           }
-        }
-        i++;
-      }
+      //   }
+      //   i++;
+      // }
       //console.log(avgtemp);
       //console.log(avghum);
       avgtemp = avgtemp/avgtempcount;
@@ -357,7 +358,7 @@
       //console.log(avgtemp);
       //console.log(avghum);
       i=0;
-      showMessage(messages,msg[0].id);
+      
       function ShowGraph()
       {
           var ctx = document.getElementById('myChart').getContext('2d');
@@ -370,7 +371,7 @@
                   labels: x_axis,
                   datasets: [{
                       label: 'My First dataset',
-                      backgroundColor: 'rgb(255, 99, 132)',
+                      // backgroundColor: 'rgb(255, 99, 132)',
                       borderColor: 'rgb(255, 99, 132)',
                       data: temp_array
                   }]
@@ -392,7 +393,7 @@
             table.deleteRow(1);
           }
         }
-        console.log(lengthoftable);
+        // console.log(lengthoftable);
         for(ij = 0;ij<9;ij++){
           var row = table.insertRow(ij+1);
           var cell1 = row.insertCell(0);

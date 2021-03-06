@@ -308,7 +308,8 @@
     ws.onmessage = function(e) {
       
       //ws.send(sensorid);
-      var msg = JSON.parse(e.data);
+      var responseData=e.data;
+      var msg = JSON.parse(responseData);
       console.log(msg[0].sensornumber);
       //console.log(e.data);
       // while(i<10000000){

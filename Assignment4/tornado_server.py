@@ -6,7 +6,6 @@ import tornado.web
 import socket
 import mysql.connector
 import json
-from Graphical_Representation import Update_Fun
 from datetime import datetime
 import itertools
 import matplotlib.pyplot as plt

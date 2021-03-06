@@ -228,9 +228,11 @@
     var printhum = [];
     var printavgtemp, printavghum;
 
-    const ws = new WebSocket('ws://localhost:9898/');
+    ws = new WebSocket('ws://localhost:9898/');
+    ws1 = new WebSocket('ws://localhost:8888/');
+    // ws=ws1;
     sensorBtn0.onclick = function() {
-      if (!ws) {
+      if (!ws.readyState) {
         console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
@@ -240,7 +242,7 @@
         }
       }
       sensorBtn1.onclick = function() {
-      if (!ws) {
+      if (!ws.readyState) {
         console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
@@ -250,7 +252,7 @@
         }
       }
       sensorBtn2.onclick = function() {
-      if (!ws) {
+      if (!ws.readyState) {
         console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
@@ -260,7 +262,7 @@
         }
       }
       sensorBtn3.onclick = function() {
-      if (!ws) {
+      if (!ws.readyState) {
         console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
@@ -270,7 +272,7 @@
         }
       }
       sensorBtn4.onclick = function() {
-      if (!ws) {
+      if (!ws.readyState) {
         console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
@@ -280,7 +282,7 @@
         }
       }
       sensorBtn5.onclick = function() {
-      if (!ws) {
+      if (!ws.readyState) {
         console.log("No WebSocket connection :(");//put error message
         return ;
       }else{
@@ -319,7 +321,8 @@
           avghum = 0;
           avgtempcount = 0;
           avghumcount = 0;
-          for(j=0; j<9; j++){
+          var length = msg.length;
+          for(j=0; j<length-1; j++){
               // temp_array.push(msg.Tempreture);
               celsius[j] = (msg[j].Tempreture -32)*(5/9);
               //tempc[j] = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
@@ -393,9 +396,10 @@
           for(k=0; k<lengthoftable-1; k++){
             table.deleteRow(1);
           }
+          lengthoftable = 9;
         }
         // console.log(lengthoftable);
-        for(ij = 0;ij<9;ij++){
+        for(ij = 0;ij<lengthoftable;ij++){
           var row = table.insertRow(ij+1);
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
@@ -424,8 +428,13 @@
       ShowGraph();
     };
     ws.onclose = function(){
-      console.log("Connection Closed");
-      showMessage(errormsg, "Connection Closed");
+      console.log("Connection Closed NODE JS Server");
+      showMessage(errormsg, "Connection Closed Node.js Server");
+      ws=ws1;
+    };
+    ws.onclose = function(){
+      console.log("Connection Closed Tornado Server");
+      showMessage(errormsg, "Connection Closed Tornado Server");
     };
 </script>
 </html>

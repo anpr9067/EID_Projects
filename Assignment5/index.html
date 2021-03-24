@@ -120,15 +120,6 @@
 
                     <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio2" autocomplete="off">
                     <label class="btn btn-outline-primary" for="sensorbtnradio2">Sensor 2</label>
-
-                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio3" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio3">Sensor 3</label>
-
-                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio4" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio4">Sensor 4</label>
-
-                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio5" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sensorbtnradio5">Sensor 5</label>
                   </div>
                   </div>
                 </div>
@@ -192,10 +183,9 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-    var i=0, j=0;
+
+
+	var i=0, j=0;
     var sensorid = 0;
     var celsius = [];
     var temp_array = [0];
@@ -228,176 +218,89 @@
     var printhum = [];
     var printavgtemp, printavghum;
 
-    ws = new WebSocket('ws://localhost:9898/');
-    ws1 = new WebSocket('ws://localhost:8888/');
-    // ws=ws1;
-    sensorBtn0.onclick = function() {
-      if (!ws.readyState) {
-        console.log("No WebSocket connection :(");//put error message
-        return ;
-      }else{
-          sensorid = 0;
-          // console.log(sensorid);
-          ws.send(sensorid);
-        }
-      }
-      sensorBtn1.onclick = function() {
-      if (!ws.readyState) {
-        console.log("No WebSocket connection :(");//put error message
-        return ;
-      }else{
-          sensorid = 1;
-          // console.log(sensorid);
-          ws.send(sensorid);
-        }
-      }
-      sensorBtn2.onclick = function() {
-      if (!ws.readyState) {
-        console.log("No WebSocket connection :(");//put error message
-        return ;
-      }else{
-          sensorid = 2;
-          // console.log(sensorid);
-          ws.send(sensorid);
-        }
-      }
-      sensorBtn3.onclick = function() {
-      if (!ws.readyState) {
-        console.log("No WebSocket connection :(");//put error message
-        return ;
-      }else{
-          sensorid = 3;
-          // console.log(sensorid);
-          ws.send(sensorid);
-        }
-      }
-      sensorBtn4.onclick = function() {
-      if (!ws.readyState) {
-        console.log("No WebSocket connection :(");//put error message
-        return ;
-      }else{
-          sensorid = 4;
-          // console.log(sensorid);
-          ws.send(sensorid);
-        }
-      }
-      sensorBtn5.onclick = function() {
-      if (!ws.readyState) {
-        console.log("No WebSocket connection :(");//put error message
-        return ;
-      }else{
-          sensorid = 5;
-          // console.log(sensorid);
-          ws.send(sensorid);
-        }
-      }
-      changetemp.onclick = function() {
-        if(tempchange == "F"){
-          tempchange = "C";
-        }else{
-          tempchange = "F";
-        }
-        // console.log(tempchange);
-      }
-    ws.onopen = function() {
-        console.log('WebSocket Client Connected');
-        ws.send(0);
-    };
-    function showMessage(idvar, datavar) {
-          idvar.textContent = `\n\n${datavar}`;
-          //messages.scrollTop = messages.scrollHeight;
-    }
-    ws.onmessage = function(e) {
-      
-      //ws.send(sensorid);
-      var responseData=e.data;
-      var msg = JSON.parse(responseData);
-      console.log(msg[0].sensornumber);
-      //console.log(e.data);
-      // while(i<10000000){
-      //   if(i==0){
-          var j = 0;
-          avgtemp = 0;
-          avghum = 0;
-          avgtempcount = 0;
-          avghumcount = 0;
-          var length = msg.length;
-          for(j=0; j<length-1; j++){
-              // temp_array.push(msg.Tempreture);
-              celsius[j] = (msg[j].Tempreture -32)*(5/9);
-              //tempc[j] = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
-              //tempf[j] = msg[j].Tempreture + "°F";
-              if(tempchange == "C"){
-                printtemp[j] = (Math.round(celsius[j] * 100) / 100).toFixed(2) + " °C";
-              }else{
-                printtemp[j] = msg[j].Tempreture + " °F";
-              }
-              printhum[j] = msg[j].Humidity + " %";
-              if(msg[j].Tempreture != 999){
-                avgtemp += msg[j].Tempreture;
-                avgtempcount++;
-                temp_array[j] = msg[j].Tempreture;
-                x_axis[j] = msg[j].TimeStamp;
-              }
-              if(msg[j].Humidity != 999){
-                avghum += msg[j].Humidity;
-                avghumcount++;
-              }
-          }
-      //   }
-      //   i++;
-      // }
-      //console.log(avgtemp);
-      //console.log(avghum);
-      avgtemp = avgtemp/avgtempcount;
-      avghum = avghum/avghumcount;
-      if(tempchange == "C"){
-        avgtemp = (avgtemp - 32)*(5/9);
-        printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °C";
-        printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
-      }else{
-        printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °F";
-        printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
-      }
-      //console.log(avgtemp);
-      //console.log(avghum);
-      i=0;
-      
-      function ShowGraph()
-      {
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var chart = new Chart(ctx, {
-              // The type of chart we want to create
-              type: 'line',
 
-              // The data for our dataset
-              data: {
-                  labels: x_axis,
-                  datasets: [{
-                      label: 'My First dataset',
-                      // backgroundColor: 'rgb(255, 99, 132)',
-                      borderColor: 'rgb(255, 99, 132)',
-                      data: temp_array
-                  }]
-              },
+	function dataupdate(msg){
+ 
+	  //var responseData=e.data;
+	  //var msg = JSON.parse(responseData);
+	  console.log(msg);
+	  var j = 0;
+	  avgtemp = 0;
+	  avghum = 0;
+	  avgtempcount = 0;
+	  avghumcount = 0;
+	  var length = msg.length;
+	  for(j=0; j<length-1; j++){
+	      // temp_array.push(msg.Tempreture);
+	      celsius[j] = (msg[j].Temp -32)*(5/9);
+	      //tempc[j] = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+	      //tempf[j] = msg[j].Tempreture + "°F";
+	      if(tempchange == "C"){
+	        printtemp[j] = (Math.round(celsius[j] * 100) / 100).toFixed(2) + " °C";
+	      }else{
+	        printtemp[j] = msg[j].Temp + " °F";
+	      }
+	      printhum[j] = msg[j].Humidity + " %";
+	      if(msg[j].Temp != 999){
+	        avgtemp += msg[j].Temp;
+	        avgtempcount++;
+	        temp_array[j] = msg[j].Temp;
+	        x_axis[j] = msg[j].Time;
+	      }
+	      if(msg[j].Humidity != 999){
+	        avghum += msg[j].Humidity;
+	        avghumcount++;
+	      }
+	  }
+	  avgtemp = avgtemp/avgtempcount;
+	  avghum = avghum/avghumcount;
+	  if(tempchange == "C"){
+	    avgtemp = (avgtemp - 32)*(5/9);
+	    printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °C";
+	    printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
+	  }else{
+	    printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °F";
+	    printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
+	  }
+	  //console.log(avgtemp);
+	  //console.log(avghum);
+	  i=0;
+	  
+	  function ShowGraph()
+	  {
+	      var ctx = document.getElementById('myChart').getContext('2d');
+	      var chart = new Chart(ctx, {
+	          // The type of chart we want to create
+	          type: 'line',
 
-              // Configuration options go here
-              options: {}
-          });
-      }
-      //console.log(msg);
-      function TableEntry() {
-        var ij = 0, k=0;
-        var table = document.getElementById("insert-into-table");
-        var lengthoftable = table.length;
-        var rowslength = table.getElementsByTagName("tr");
-        var lengthoftable = rowslength.length;
-        if(lengthoftable >9){
-          for(k=0; k<lengthoftable-1; k++){
-            table.deleteRow(1);
-          }
-          lengthoftable = 9;
-        }
+	          // The data for our dataset
+	          data: {
+	              labels: x_axis,
+	              datasets: [{
+	                  label: 'My First dataset',
+	                  // backgroundColor: 'rgb(255, 99, 132)',
+	                  borderColor: 'rgb(255, 99, 132)',
+	                  data: temp_array
+	              }]
+	          },
+
+	          // Configuration options go here
+	          options: {}
+	      });
+	  }
+	  //console.log(msg);
+	  function TableEntry() {
+	    var ij = 0, k=0;
+	    var table = document.getElementById("insert-into-table");
+	    var lengthoftable = table.length;
+	    var rowslength = table.getElementsByTagName("tr");
+	    var lengthoftable = rowslength.length;
+	    if(lengthoftable >9){
+	      for(k=0; k<lengthoftable-1; k++){
+	        table.deleteRow(1);
+	      }
+	      lengthoftable = 9;
+	    }
         // console.log(lengthoftable);
         for(ij = 0;ij<lengthoftable;ij++){
           var row = table.insertRow(ij+1);
@@ -406,11 +309,11 @@
           var cell3 = row.insertCell(2);
           var cell4 = row.insertCell(3);
           var tempc = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
-          var tempf = msg[ij].Tempreture + "°F";
+          var tempf = msg[ij].Temp + "°F";
           //console.log(tempf);
           //console.log(tempc);
           cell1.innerHTML = msg[ij].sensornumber;
-          cell2.innerHTML = msg[ij].TimeStamp;
+          cell2.innerHTML = msg[ij].Time;
           cell3.innerHTML = printhum[ij];
           cell4.innerHTML = printtemp[ij]; 
         }
@@ -420,22 +323,76 @@
       showMessage(AvgTemp,printavgtemp);
       showMessage(Hum,printhum[0]);
       showMessage(AvgHum, printavghum);
-      showMessage(Timestampid, msg[0].TimeStamp);
-      showMessage(Timestampid1, msg[0].TimeStamp);
-      showMessage(Timestampid2, msg[0].TimeStamp);
-      showMessage(Timestampid3, msg[0].TimeStamp);
+      showMessage(Timestampid, msg[0].Time);
+      showMessage(Timestampid1, msg[0].Time);
+      showMessage(Timestampid2, msg[0].Time);
+      showMessage(Timestampid3, msg[0].Time);
       TableEntry();
       ShowGraph();
-    };
-    ws.onclose = function(){
-      console.log("Connection Closed NODE JS Server");
-      showMessage(errormsg, "Connection Closed Node.js Server");
-      ws=ws1;
-    };
-    ws.onclose = function(){
-      console.log("Connection Closed Tornado Server");
-      showMessage(errormsg, "Connection Closed Tornado Server");
-    };
+  }
+
+
+    function fetch_data(sensorid) {
+ 		var sensorbody = { id: sensorid };
+ 		console.log("sensorbody" + JSON.stringify(sensorbody));
+    	fetch('https://tamkpgvcq1.execute-api.us-east-1.amazonaws.com/dev/sensor-post', {
+  		method: 'POST', // or 'PUT'
+  		headers: {
+    		'Content-Type': 'application/json',
+  		},
+
+	  		body: JSON.stringify(sensorbody),
+		})
+		.then(function (response) {
+	            if (response.status === 200) {
+	                response.json().then(function (data) {
+               			var d = data.body;
+               			console.log(d);
+               			dataupdate(d);
+            		});
+
+	            } else {
+	                return {};
+	            }
+	    })
+
+		.catch((error) => {
+	  		console.error('Error:', error);
+		});
+    }
+    
+
+    fetch_data(1);
+
+    sensorBtn0.onclick = function() {
+          sensorid = 2;
+          // console.log(sensorid);
+          fetch_data(sensorid);
+      }
+      sensorBtn1.onclick = function() {
+          sensorid = 2;
+          // console.log(sensorid);
+          fetch_data(sensorid);
+      }
+      sensorBtn2.onclick = function() {
+          sensorid = 3;
+          // console.log(sensorid);
+          fetch_data(sensorid);
+      }
+      changetemp.onclick = function() {
+        if(tempchange == "F"){
+          tempchange = "C";
+        }else{
+          tempchange = "F";
+        }
+      }
+    
+    function showMessage(idvar, datavar) {
+          idvar.textContent = `\n\n${datavar}`;
+    }
+
+
+
 </script>
 </html>
 

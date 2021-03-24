@@ -55,7 +55,7 @@ while True:
 		dt = datetime.fromtimestamp(timestamp)	# chaning to better format
 		dt_object = json.dumps(dt,default = str)
 		record = {	
-				"id":id_num,
+				"idnum":id_num,
 				"Sensor":sense,
 				"Time":dt_object,
 				"Temp":t,

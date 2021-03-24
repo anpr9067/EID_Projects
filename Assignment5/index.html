@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sensor Admin</title>
+  <!-- plugins:css -->
+  <!-- <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css"> -->
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+<!--   <script type="text/javascript" src="Chart.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <h4 class="ellipsis font-weight-normal text-danger font-weight-bold" id="errormsg"></h4>
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Sensor Dashboard</h4>
+                </div>
+                <div>
+                      <h4 class="font-weight-bold mb-0" >Total data</h4>
+                      <h4 class="font-weight-bold mb-0" id="messages"></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left">Temperature</p>
+                  <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="Temp">0</h3>
+                    <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>  
+                  <p class="mb-0 mt-2 text-success" id="Timestampid">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left">Average Temperature</p>
+                  <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id="AvgTemp">0</h3>
+                    <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>  
+                  <p class="mb-0 mt-2 text-success" id="Timestampid1">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left">Humidity</p>
+                  <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="Hum">0</h3>
+                    <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>  
+                  <p class="mb-0 mt-2 text-success" id="Timestampid2">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left">Average Humidity</p>
+                  <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0" id ="AvgHum">0</h3>
+                    <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>  
+                  <p class="mb-0 mt-2 text-success" id="Timestampid3">NULL<span class="text-black ml-1"><small>TimeStamp</small></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <div>
+                <canvas id="myChart" width="400" height="400"></canvas>
+                <div class="card border-right-0 border-left-0 border-bottom-0">
+                  <button class="btn btn-lg btn-outline-light text-primary rounded-0 border-0 d-none d-md-block" onClick="window.location.reload();">Refresh</button>
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio0" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="sensorbtnradio0">Sensor 0</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio1">Sensor 1</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio2">Sensor 2</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio3">Sensor 3</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio4">Sensor 4</label>
+
+                    <input type="button" class="btn-check" name="btnradio" id="sensorbtnradio5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sensorbtnradio5">Sensor 5</label>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0">Latest All Sensor Data</p>
+                  <div class="table-responsive">
+                    <table class="table table-hover" id="insert-into-table">
+                      <thead>
+                        <tr>
+                          <th>Sensor Id</th>
+                          <th>Timestamp</th>
+                          <th>Humidity</th>
+                          <th id="ChangeTemp">Temperature</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer">
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="vendors/base/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="vendors/chart.js/Chart.min.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <!-- <script type="js/websocket.js"></script> -->
+  <!-- End custom js for this page-->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    var i=0, j=0;
+    var sensorid = 0;
+    var celsius = [];
+    var temp_array = [0];
+    var x_axis = [0];
+    var avgtemp = 0;
+    var avghum = 0;
+    var avgtempcount = 0;
+    var avghumcount = 0;
+    const sensorBtn0 = document.querySelector('#sensorbtnradio0');
+    const sensorBtn1 = document.querySelector('#sensorbtnradio1');
+    const sensorBtn2 = document.querySelector('#sensorbtnradio2');
+    const sensorBtn3 = document.querySelector('#sensorbtnradio3');
+    const sensorBtn4 = document.querySelector('#sensorbtnradio4');
+    const sensorBtn5 = document.querySelector('#sensorbtnradio5');
+    const messages = document.querySelector('#messages');
+    const Temp = document.querySelector('#Temp');
+    const AvgTemp = document.querySelector('#AvgTemp');
+    const Hum = document.querySelector('#Hum');
+    const AvgHum = document.querySelector('#AvgHum');
+    const changetemp = document.querySelector('#ChangeTemp');
+    const Timestampid = document.querySelector('#Timestampid');
+    const Timestampid1 = document.querySelector('#Timestampid1');
+    const Timestampid2 = document.querySelector('#Timestampid2');
+    const Timestampid3 = document.querySelector('#Timestampid3');
+    const errormsg = document.querySelector('#errormsg');
+    var tempchange = "F";
+    //var tempc;// = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+    //var tempf;// = msg[ij].Tempreture + "°F";
+    var printtemp = [];
+    var printhum = [];
+    var printavgtemp, printavghum;
+
+    ws = new WebSocket('ws://localhost:9898/');
+    ws1 = new WebSocket('ws://localhost:8888/');
+    // ws=ws1;
+    sensorBtn0.onclick = function() {
+      if (!ws.readyState) {
+        console.log("No WebSocket connection :(");//put error message
+        return ;
+      }else{
+          sensorid = 0;
+          // console.log(sensorid);
+          ws.send(sensorid);
+        }
+      }
+      sensorBtn1.onclick = function() {
+      if (!ws.readyState) {
+        console.log("No WebSocket connection :(");//put error message
+        return ;
+      }else{
+          sensorid = 1;
+          // console.log(sensorid);
+          ws.send(sensorid);
+        }
+      }
+      sensorBtn2.onclick = function() {
+      if (!ws.readyState) {
+        console.log("No WebSocket connection :(");//put error message
+        return ;
+      }else{
+          sensorid = 2;
+          // console.log(sensorid);
+          ws.send(sensorid);
+        }
+      }
+      sensorBtn3.onclick = function() {
+      if (!ws.readyState) {
+        console.log("No WebSocket connection :(");//put error message
+        return ;
+      }else{
+          sensorid = 3;
+          // console.log(sensorid);
+          ws.send(sensorid);
+        }
+      }
+      sensorBtn4.onclick = function() {
+      if (!ws.readyState) {
+        console.log("No WebSocket connection :(");//put error message
+        return ;
+      }else{
+          sensorid = 4;
+          // console.log(sensorid);
+          ws.send(sensorid);
+        }
+      }
+      sensorBtn5.onclick = function() {
+      if (!ws.readyState) {
+        console.log("No WebSocket connection :(");//put error message
+        return ;
+      }else{
+          sensorid = 5;
+          // console.log(sensorid);
+          ws.send(sensorid);
+        }
+      }
+      changetemp.onclick = function() {
+        if(tempchange == "F"){
+          tempchange = "C";
+        }else{
+          tempchange = "F";
+        }
+        // console.log(tempchange);
+      }
+    ws.onopen = function() {
+        console.log('WebSocket Client Connected');
+        ws.send(0);
+    };
+    function showMessage(idvar, datavar) {
+          idvar.textContent = `\n\n${datavar}`;
+          //messages.scrollTop = messages.scrollHeight;
+    }
+    ws.onmessage = function(e) {
+      
+      //ws.send(sensorid);
+      var responseData=e.data;
+      var msg = JSON.parse(responseData);
+      console.log(msg[0].sensornumber);
+      //console.log(e.data);
+      // while(i<10000000){
+      //   if(i==0){
+          var j = 0;
+          avgtemp = 0;
+          avghum = 0;
+          avgtempcount = 0;
+          avghumcount = 0;
+          var length = msg.length;
+          for(j=0; j<length-1; j++){
+              // temp_array.push(msg.Tempreture);
+              celsius[j] = (msg[j].Tempreture -32)*(5/9);
+              //tempc[j] = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+              //tempf[j] = msg[j].Tempreture + "°F";
+              if(tempchange == "C"){
+                printtemp[j] = (Math.round(celsius[j] * 100) / 100).toFixed(2) + " °C";
+              }else{
+                printtemp[j] = msg[j].Tempreture + " °F";
+              }
+              printhum[j] = msg[j].Humidity + " %";
+              if(msg[j].Tempreture != 999){
+                avgtemp += msg[j].Tempreture;
+                avgtempcount++;
+                temp_array[j] = msg[j].Tempreture;
+                x_axis[j] = msg[j].TimeStamp;
+              }
+              if(msg[j].Humidity != 999){
+                avghum += msg[j].Humidity;
+                avghumcount++;
+              }
+          }
+      //   }
+      //   i++;
+      // }
+      //console.log(avgtemp);
+      //console.log(avghum);
+      avgtemp = avgtemp/avgtempcount;
+      avghum = avghum/avghumcount;
+      if(tempchange == "C"){
+        avgtemp = (avgtemp - 32)*(5/9);
+        printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °C";
+        printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
+      }else{
+        printavgtemp = (Math.round(avgtemp * 100) / 100).toFixed(2) + " °F";
+        printavghum =  (Math.round(avghum * 100) / 100).toFixed(2) + " %";
+      }
+      //console.log(avgtemp);
+      //console.log(avghum);
+      i=0;
+      
+      function ShowGraph()
+      {
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: 'line',
+
+              // The data for our dataset
+              data: {
+                  labels: x_axis,
+                  datasets: [{
+                      label: 'My First dataset',
+                      // backgroundColor: 'rgb(255, 99, 132)',
+                      borderColor: 'rgb(255, 99, 132)',
+                      data: temp_array
+                  }]
+              },
+
+              // Configuration options go here
+              options: {}
+          });
+      }
+      //console.log(msg);
+      function TableEntry() {
+        var ij = 0, k=0;
+        var table = document.getElementById("insert-into-table");
+        var lengthoftable = table.length;
+        var rowslength = table.getElementsByTagName("tr");
+        var lengthoftable = rowslength.length;
+        if(lengthoftable >9){
+          for(k=0; k<lengthoftable-1; k++){
+            table.deleteRow(1);
+          }
+          lengthoftable = 9;
+        }
+        // console.log(lengthoftable);
+        for(ij = 0;ij<lengthoftable;ij++){
+          var row = table.insertRow(ij+1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var tempc = (Math.round(celsius[ij] * 100) / 100).toFixed(2) + "°C";
+          var tempf = msg[ij].Tempreture + "°F";
+          //console.log(tempf);
+          //console.log(tempc);
+          cell1.innerHTML = msg[ij].sensornumber;
+          cell2.innerHTML = msg[ij].TimeStamp;
+          cell3.innerHTML = printhum[ij];
+          cell4.innerHTML = printtemp[ij]; 
+        }
+        ij = 0;  
+      }
+      showMessage(Temp,printtemp[0]);
+      showMessage(AvgTemp,printavgtemp);
+      showMessage(Hum,printhum[0]);
+      showMessage(AvgHum, printavghum);
+      showMessage(Timestampid, msg[0].TimeStamp);
+      showMessage(Timestampid1, msg[0].TimeStamp);
+      showMessage(Timestampid2, msg[0].TimeStamp);
+      showMessage(Timestampid3, msg[0].TimeStamp);
+      TableEntry();
+      ShowGraph();
+    };
+    ws.onclose = function(){
+      console.log("Connection Closed NODE JS Server");
+      showMessage(errormsg, "Connection Closed Node.js Server");
+      ws=ws1;
+    };
+    ws.onclose = function(){
+      console.log("Connection Closed Tornado Server");
+      showMessage(errormsg, "Connection Closed Tornado Server");
+    };
+</script>
+</html>
+

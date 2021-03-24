@@ -1,9 +1,8 @@
-	#
-#   Hello World client in Python
-#   Connects REQ socket to tcp://localhost:5555
-#   Sends "Hello" to server, expects "World" back
-#
-
+#	FileName: client.py
+#	File Description: This file contains the functions to connect to the server file, 
+# 						and calculate the data and send the data to server.
+# 	Resources: https://zeromq.org/languages/python/
+# 				Some of the things from previous assignments from the same subject.
 import zmq
 import json
 import random
@@ -23,7 +22,6 @@ error=0
 id_num=0
 #  Do 10 requests, waiting each time for a response
 while True:
-
 	for sense in range(1,4):
 		id_num+=1
 		r = random.randint(1,100)	# random number to get the probability

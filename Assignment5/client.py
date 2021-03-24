@@ -1,4 +1,4 @@
-#
+	#
 #   Hello World client in Python
 #   Connects REQ socket to tcp://localhost:5555
 #   Sends "Hello" to server, expects "World" back
@@ -20,10 +20,12 @@ request=0
 base = 40
 alarm=0
 error=0
+id_num=0
 #  Do 10 requests, waiting each time for a response
 while True:
 
 	for sense in range(1,4):
+		id_num+=1
 		r = random.randint(1,100)	# random number to get the probability
 		if(r>=91 and r<=95):		# 5% chance for -3 to -8
 			t = base + random.randint(-8,-3)
@@ -52,7 +54,8 @@ while True:
 		timestamp = datetime.timestamp(now)
 		dt = datetime.fromtimestamp(timestamp)	# chaning to better format
 		dt_object = json.dumps(dt,default = str)
-		record = {
+		record = {	
+				"id":id_num,
 				"Sensor":sense,
 				"Time":dt_object,
 				"Temp":t,

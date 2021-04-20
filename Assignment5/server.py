@@ -4,7 +4,7 @@
 # 	Resources: https://aws.amazon.com/premiumsupport/knowledge-center/iot-core-publish-mqtt-messages-python/
 # 				Some of the things from previous assignments from the same subject.
 import time
-from temp import sensor_param
+#from temp import sensor_param
 import json
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 import zmq

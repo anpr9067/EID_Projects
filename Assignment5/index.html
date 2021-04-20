@@ -312,7 +312,7 @@
           var tempf = msg[ij].Temp + "°F";
           //console.log(tempf);
           //console.log(tempc);
-          cell1.innerHTML = msg[ij].sensornumber;
+          cell1.innerHTML = msg[ij].Sensor;
           cell2.innerHTML = msg[ij].Time;
           cell3.innerHTML = printhum[ij];
           cell4.innerHTML = printtemp[ij]; 
@@ -365,7 +365,7 @@
     fetch_data(1);
 
     sensorBtn0.onclick = function() {
-          sensorid = 2;
+          sensorid = 1;
           // console.log(sensorid);
           fetch_data(sensorid);
       }
